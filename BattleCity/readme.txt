@@ -1,0 +1,1 @@
+you only need to install pygame to run the tanks.py, everything should work!
