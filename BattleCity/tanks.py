@@ -1424,33 +1424,6 @@ class Player(Tank):
 		random.shuffle(results)
 		return results
 	
-	def bfs(self,target_position = None):
-		check_unit = 32
-		fringe = util.Queue()
-		x = self.nearest(self.rect.left,16)
-		y = self.nearest(self.rect.top,16)
-		start = (x , y)
-		fringe.push( (start, []) )
-		visited = set()
-		visited.add(start)
-		while not fringe.isEmpty():
-			node, actions = fringe.pop()
-			for curNode,curAction in self.getSuccessors(node):
-				if not curNode in visited:
-					x,y = curNode
-					if target_position == None:
-						if self.isGoalState(curNode):
-							#print "actions: ",actions,"curAction",curAction
-							return actions + [curAction]	
-					else:
-						p_x = target_position[0]
-						p_y = target_position[1]
-						if abs(x - p_x) < check_unit and abs(y - p_y) < check_unit:
-							return actions + [curAction]
-					fringe.push((curNode, actions + [curAction]))
-					visited.add(curNode)
-		return []
-
 	def getCostOfActions(self,actions):
 		if not actions:
 			return 999999
