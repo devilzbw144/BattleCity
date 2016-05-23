@@ -1514,14 +1514,12 @@ class Player(Tank):
 		while not fringe.isEmpty():
 			node, actions = fringe.pop()
 			if self.isGoalState(node):
-				print "self",self.rect.topleft, "node: " ,node, "Heuristic: ", self.heuristic(node), "action", actions
+				#print "self",self.rect.topleft, "node: " ,node, "Heuristic: ", self.heuristic(node), "action", actions
 				return actions
 			if not node in visited:
 				visited.add(node)
 
 			for curNode, curAction in self.getSuccessors(node):
-				if self.isGoalState(curNode):
-					fringe.push( (curNode, actions + [curAction]),self.getCostOfActions(actions + [curAction]) + self.heuristic(curNode))
 				if not curNode in visited:
 					visited.add(curNode)
 					fringe.push( (curNode, actions + [curAction]),self.getCostOfActions(actions + [curAction]) + self.heuristic(curNode))
